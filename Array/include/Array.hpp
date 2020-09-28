@@ -1,6 +1,7 @@
 #include <bits/c++config.h>
 #include <bits/refwrap.h>
 #include <bits/stl_iterator.h>
+#include <bits/stl_algo.h>
 
 #ifndef ARRAY_HPP
 #define ARRAY_HPP
