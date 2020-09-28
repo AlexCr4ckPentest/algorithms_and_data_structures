@@ -18,9 +18,7 @@ template<typename _ty>
 LinkedList<_ty>::~LinkedList() noexcept
 {
     if (m_list_head != nullptr) {
-        while (m_list_size != 0) {
-            pop_front();
-        }
+        clear();
     }
 }
 
