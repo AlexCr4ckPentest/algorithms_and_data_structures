@@ -49,6 +49,7 @@ private:
 };
 
 } // namespace alex
+
 #include "details/StackImpl.hpp"
 
 #endif // STACK_HPP
