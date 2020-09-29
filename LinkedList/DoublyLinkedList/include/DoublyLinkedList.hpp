@@ -27,6 +27,14 @@ public:
     DoublyLinkedList() noexcept;
     ~DoublyLinkedList() noexcept;
 
+    void push_back(const value_type& elem) noexcept;
+    void push_front(const value_type& elem) noexcept;
+    void pop_back() noexcept;
+    void pop_front() noexcept;
+    void clear() noexcept;
+    void remove_at(const size_type index);
+    void insert(const value_type& elem, const size_type index);
+
 private:
     DoublyLinkedListNode* m_list_head;
     size_type m_list_size;
