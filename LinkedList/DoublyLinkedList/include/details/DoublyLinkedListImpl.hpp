@@ -182,6 +182,28 @@ DoublyLinkedList<_list_elem_type>::operator[](const size_type index) const noexc
     return std::cref(list_node->m_data);
 }
 
+
+
+template<typename _list_elem_type>
+    typename DoublyLinkedList<_list_elem_type>::reference
+DoublyLinkedList<_list_elem_type>::at(const size_type index)
+{
+    if (index >= m_list_size) {
+        std::__throw_out_of_range_fmt("%s: Index '%zu' out of range!", __PRETTY_FUNCTION__, index);
+    }
+}
+
+
+
+template<typename _list_elem_type>
+    typename DoublyLinkedList<_list_elem_type>::const_reference
+DoublyLinkedList<_list_elem_type>::at(const size_type index) const
+{
+    if (index >= m_list_size) {
+        std::__throw_out_of_range_fmt("%s: Index '%zu' out of range!", __PRETTY_FUNCTION__, index);
+    }
+}
+
 } // namespace alex
 
 #endif // DOUBLY_LINKED_LIST_IMPL_HPP
