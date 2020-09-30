@@ -1,7 +1,5 @@
 #include "../DoublyLinkedList.hpp"
 
-#include <cstdio>
-
 #ifndef DOUBLY_LINKED_LIST_IMPL_HPP
 #define DOUBLY_LINKED_LIST_IMPL_HPP
 
