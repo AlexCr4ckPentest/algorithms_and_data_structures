@@ -16,7 +16,7 @@ struct DoublyLinkedListNode
                                 DoublyLinkedListNode* next = nullptr) noexcept
         : m_data {data}
         , m_prev {prev}
-        , m_prev {next}
+        , m_next {next}
     {}
 
     _node_elem_type m_data;

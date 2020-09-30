@@ -33,7 +33,16 @@ public:
     void pop_front() noexcept;
     void clear() noexcept;
     void remove_at(const size_type index);
-    void insert(const value_type& elem, const size_type index);
+    void insert_after(const value_type& elem, const size_type index);
+
+    inline size_type size() const noexcept
+    { return m_list_size; }
+
+    inline bool is_empty() const noexcept
+    { return m_list_size == 0; }
+
+    reference operator[](const size_type index) noexcept;
+    const_reference operator[](const size_type index) const noexcept;
 
 private:
     DoublyLinkedListNode* m_list_head;

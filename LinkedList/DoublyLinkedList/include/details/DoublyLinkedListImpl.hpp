@@ -1,5 +1,7 @@
 #include "../DoublyLinkedList.hpp"
 
+#include <cstdio>
+
 #ifndef DOUBLY_LINKED_LIST_IMPL_HPP
 #define DOUBLY_LINKED_LIST_IMPL_HPP
 
@@ -105,7 +107,7 @@ void DoublyLinkedList<_list_elem_type>::remove_at(const size_type index)
     else {
         DoublyLinkedListNode* current_list_node {m_list_head};
 
-        for (std::size_t i = 0; i < index - 1; i++) {
+        for (size_type i = 0; i < index - 1; i++) {
             current_list_node = current_list_node->m_next;
         }
 
@@ -126,7 +128,7 @@ void DoublyLinkedList<_list_elem_type>::remove_at(const size_type index)
 
 
 template<typename _list_elem_type>
-void DoublyLinkedList<_list_elem_type>::insert(const value_type& elem, const size_type index)
+void DoublyLinkedList<_list_elem_type>::insert_after(const value_type& elem, const size_type index)
 {
     if (index >= m_list_size) {
         std::__throw_out_of_range_fmt("%s: Index '%zu' out of range!", __PRETTY_FUNCTION__, index);
@@ -141,23 +143,45 @@ void DoublyLinkedList<_list_elem_type>::insert(const value_type& elem, const siz
     else {
         DoublyLinkedListNode* current_list_node {m_list_head};
 
-        for (std::size_t i = 0; i < index - 1; i++) {
+        for (size_type i = 0; i < index - 1 ; i++) {
             current_list_node = current_list_node->m_next;
         }
 
-        if (current_list_node->m_next != nullptr) {
-            delete current_list_node->m_next;
-        }
-
-        DoublyLinkedListNode* next_node {current_list_node->m_next->m_next};
+        DoublyLinkedListNode* next_node {current_list_node->m_next};
         current_list_node->m_next = new DoublyLinkedListNode(elem, current_list_node, next_node);
 
         if (next_node != nullptr) {
-            next_node->m_prev = current_list_node;
+            next_node->m_prev = current_list_node->m_next;
         }
 
         m_list_size++;
     }
+}
+
+
+
+template<typename _list_elem_type>
+    typename DoublyLinkedList<_list_elem_type>::reference
+DoublyLinkedList<_list_elem_type>::operator[](const size_type index) noexcept
+{
+    DoublyLinkedListNode* list_node {m_list_head};
+    for (size_type i = 0; i < index; i++) {
+        list_node = list_node->m_next;
+    }
+    return std::ref(list_node->m_data);
+}
+
+
+
+template<typename _list_elem_type>
+    typename DoublyLinkedList<_list_elem_type>::const_reference
+DoublyLinkedList<_list_elem_type>::operator[](const size_type index) const noexcept
+{
+    DoublyLinkedListNode* list_node {m_list_head};
+    for (size_type i = 0; i < index; i++) {
+        list_node = list_node->m_next;
+    }
+    return std::cref(list_node->m_data);
 }
 
 } // namespace alex
